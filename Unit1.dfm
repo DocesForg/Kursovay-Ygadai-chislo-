@@ -106,6 +106,7 @@ object Form1: TForm1
     Width = 121
     Height = 21
     TabOrder = 1
+    OnKeyPress = PhoneKeyPress
   end
   object Edit2: TEdit
     Left = 128
@@ -113,6 +114,7 @@ object Form1: TForm1
     Width = 137
     Height = 21
     TabOrder = 2
+    OnKeyPress = PhoneKeyPress
   end
   object Button2: TButton
     Left = 136
@@ -138,6 +140,7 @@ object Form1: TForm1
     Width = 185
     Height = 129
     TabOrder = 5
+    OnKeyPress = Memo1KeyPress
   end
   object Memo2: TMemo
     Left = 344
@@ -145,6 +148,7 @@ object Form1: TForm1
     Width = 185
     Height = 129
     TabOrder = 6
+    OnKeyPress = Memo1KeyPress
   end
   object Timer1: TTimer
     Interval = 3000

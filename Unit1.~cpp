@@ -23,7 +23,7 @@ void countMatches(int secret, int guess, int& correctDigits, string& correctPosi
         int guessDigit = guessCopy % 10;
         if (secretDigit == guessDigit) {
             correctDigits++;
-            // Преобразование цифры в строку без использования to_string
+            // Преобразование цифры в строку
             char digitChar = '0' + secretDigit;
             correctPositions = digitChar + correctPositions;
         }
@@ -52,7 +52,16 @@ Application->Terminate();
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-   if(Edit1->Text == "")
+   if(secretNumber==0)
+   {
+     ShowMessage("Пожалуйста, придумайте число."); // Вывод предупреждения
+        Edit2->SetFocus(); // Возвращение фокуса на Edit поле
+                Memo1->Lines->Clear();
+                Memo2->Lines->Clear();
+                Edit1->Clear();
+                Edit2->Clear();
+   }
+   else if(Edit1->Text == "")
    {
      ShowMessage("Пожалуйста, заполните поле."); // Вывод предупреждения
         Edit1->SetFocus(); // Возвращение фокуса на Edit поле
@@ -65,9 +74,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
     int num = StrToIntDef(Edit1->Text, 0); // Используем StrToIntDef, чтобы избежать исключения при вводе нечисловых символов
     if (i<=9)
     {
-    // Проверяем, находится ли число в диапазоне от 1 до 1000
-    if (guess >= 1 && guess <= 1000)
-    {
+
         // Добавляем число в массив
         numbers[i] = num;
 
@@ -76,14 +83,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
         // Очищаем Edit1
         Edit1->Clear();
-
-    }
-    else
-    {
-        ShowMessage("Пожалуйста, введите число от 1 до 1000.");
-        Edit1->SetFocus(); // Устанавливаем фокус обратно на Edit1
-    }
-        // Очищаем текущий текст в Memo1
+         // Очищаем текущий текст в Memo1
     Memo1->Lines->Clear();
 
     // Выводим числа из массива в Memo1
@@ -98,13 +98,45 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         ShowMessage("Вы проиграли! Создайте новое число");
         Edit1->SetFocus(); // Устанавливаем фокус обратно на Edit1
     }
-
+    if (guess >= 1 && guess <= 1000 && secretNumber>= 1 && secretNumber <= 1000)
+    {
        countMatches(secretNumber, guess, correctDigits, correctPositions);
         AnsiString correctPositionsStr(correctPositions.c_str());
         Memo2->Lines->Add("Угадано цифр: " + IntToStr(correctDigits) + ", правильные позиции: " + correctPositionsStr);
      if (secretNumber == guess)
     {
-        Memo2->Lines->Add("Поздравляем! Вы угадали число!");
+         ShowMessage("Поздравляем, вы победили!");
+
+            // ?????? ?? ?????? ????? ????
+            int choice = MessageBox(NULL, "Хотите начать новую игру?", "Новая игра", MB_YESNO | MB_ICONQUESTION);
+
+            if (choice == IDYES)
+            {
+                Memo1->Lines->Clear();
+                Memo2->Lines->Clear();
+                Edit1->Clear();
+                Edit2->Clear();
+                // Очищает массив numbers
+    memset(numbers, 0, sizeof(numbers));
+
+                 // Сбрасывает индекс в 0
+                 i = 0;
+                 guess=0;
+                 secretNumber=0;
+            }
+            else
+            {
+                // ????????? ??????????
+                Application->Terminate();
+            }
+    }
+    }
+     else
+    {
+        ShowMessage("Пожалуйста, введите число от 1 до 1000.");
+        Edit1->SetFocus(); // Устанавливаем фокус обратно на Edit1
+            Memo1->Lines->Delete(Memo1->Lines->Count - 1);
+
     }
     }
     }
@@ -112,15 +144,17 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
-
-         if (Edit2->Text == "") // Проверка на пустое поле
+         if (Edit2->Text == "" ) // Проверка на пустое поле
     {
         ShowMessage("Пожалуйста, заполните поле."); // Вывод предупреждения
         Edit2->SetFocus(); // Возвращение фокуса на Edit поле
     }
 
+
         else {
         secretNumber = StrToInt(Edit2->Text);
+        if(secretNumber>= 1 && secretNumber <= 1000)
+        {
         Edit2->Text = "Число создано";
         Timer1->Enabled = true;
         // Очищает массив numbers
@@ -130,7 +164,15 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
     i = 0;
 
         Memo1->Lines->Clear();
-        Memo2->Lines->Clear();
+        }
+        else{
+        ShowMessage("Пожалуйста, введите число от 1 до 1000.");
+        Edit1->SetFocus(); // Устанавливаем фокус обратно на Edit1
+         Memo1->Lines->Clear();
+         Memo2->Lines->Clear();
+         Edit1->Clear();
+         Edit2->Clear();
+        }
         }
 }
 //---------------------------------------------------------------------------
