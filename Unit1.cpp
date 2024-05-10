@@ -37,6 +37,7 @@ int secretNumber;
     string correctPositions;
 int numbers[9]; // Массив для хранения чисел
 int i = 0; // Текущий индекс массива
+
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -72,15 +73,16 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
    guess = StrToInt(Edit1->Text);
 // Получаем число из Edit1
     int num = StrToIntDef(Edit1->Text, 0); // Используем StrToIntDef, чтобы избежать исключения при вводе нечисловых символов
-    if (i<=9)
+    if (i<10)
     {
-
+        if (guess >= 1 && guess <= 1000)
+    {
         // Добавляем число в массив
         numbers[i] = num;
 
         // Увеличиваем индекс для следующего числа
         i++;
-
+     }
         // Очищаем Edit1
         Edit1->Clear();
          // Очищаем текущий текст в Memo1
@@ -92,12 +94,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         Memo1->Lines->Add(IntToStr(numbers[j]));
     }
 
-    }
-    else
-    {
-        ShowMessage("Вы проиграли! Создайте новое число");
-        Edit1->SetFocus(); // Устанавливаем фокус обратно на Edit1
-    }
+
     if (guess >= 1 && guess <= 1000 && secretNumber>= 1 && secretNumber <= 1000)
     {
        countMatches(secretNumber, guess, correctDigits, correctPositions);
@@ -137,6 +134,34 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         Edit1->SetFocus(); // Устанавливаем фокус обратно на Edit1
             Memo1->Lines->Delete(Memo1->Lines->Count - 1);
 
+    }
+     }
+    else
+    {
+        ShowMessage("Вы проиграли! Создайте новое число");
+
+            // ?????? ?? ?????? ????? ????
+            int choice = MessageBox(NULL, "Хотите начать новую игру?", "Новая игра", MB_YESNO | MB_ICONQUESTION);
+
+            if (choice == IDYES)
+            {
+                Memo1->Lines->Clear();
+                Memo2->Lines->Clear();
+                Edit1->Clear();
+                Edit2->Clear();
+                // Очищает массив numbers
+    memset(numbers, 0, sizeof(numbers));
+
+                 // Сбрасывает индекс в 0
+                 i = 0;
+                 guess=0;
+                 secretNumber=0;
+            }
+            else
+            {
+                // ????????? ??????????
+                Application->Terminate();
+            }
     }
     }
     }
@@ -185,7 +210,7 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender)
 
 void __fastcall TForm1::PhoneKeyPress(TObject *Sender, char &Key)
 {
-   if(!((Key >= '0' && Key <= '9') || Key == VK_BACK)) Key = 0x00;
+   if(!((Key >= '0' && Key <= '9') || Key == VK_BACK )) Key = 0x00;
 }
 //---------------------------------------------------------------------------
 

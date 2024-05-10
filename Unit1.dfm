@@ -5,7 +5,7 @@ object Form1: TForm1
   BorderStyle = bsSingle
   Caption = #1048#1075#1088#1072' "'#1059#1075#1072#1076#1072#1081' '#1095#1080#1089#1083#1086'"'
   ClientHeight = 442
-  ClientWidth = 650
+  ClientWidth = 639
   Color = clInactiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -32,7 +32,7 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 112
+    Left = 376
     Top = 200
     Width = 159
     Height = 24
@@ -47,7 +47,7 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label3: TLabel
-    Left = 392
+    Left = 408
     Top = 80
     Width = 87
     Height = 16
@@ -62,7 +62,7 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label4: TLabel
-    Left = 136
+    Left = 128
     Top = 80
     Width = 121
     Height = 16
@@ -77,7 +77,7 @@ object Form1: TForm1
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 392
+    Left = 136
     Top = 200
     Width = 95
     Height = 24
@@ -92,7 +92,7 @@ object Form1: TForm1
     ParentFont = False
   end
   object Button1: TButton
-    Left = 392
+    Left = 408
     Top = 136
     Width = 89
     Height = 49
@@ -101,23 +101,25 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Edit1: TEdit
-    Left = 376
+    Left = 392
     Top = 104
     Width = 121
     Height = 21
+    MaxLength = 4
     TabOrder = 1
     OnKeyPress = PhoneKeyPress
   end
   object Edit2: TEdit
-    Left = 128
+    Left = 120
     Top = 104
     Width = 137
     Height = 21
+    MaxLength = 4
     TabOrder = 2
     OnKeyPress = PhoneKeyPress
   end
   object Button2: TButton
-    Left = 136
+    Left = 128
     Top = 136
     Width = 113
     Height = 49
@@ -126,7 +128,7 @@ object Form1: TForm1
     OnClick = Button2Click
   end
   object Button3: TButton
-    Left = 264
+    Left = 280
     Top = 384
     Width = 89
     Height = 49
@@ -135,7 +137,7 @@ object Form1: TForm1
     OnClick = Button3Click
   end
   object Memo1: TMemo
-    Left = 104
+    Left = 360
     Top = 240
     Width = 185
     Height = 129
@@ -143,7 +145,7 @@ object Form1: TForm1
     OnKeyPress = Memo1KeyPress
   end
   object Memo2: TMemo
-    Left = 344
+    Left = 88
     Top = 240
     Width = 185
     Height = 129
@@ -153,6 +155,7 @@ object Form1: TForm1
   object Timer1: TTimer
     Interval = 3000
     OnTimer = Timer1Timer
-    Left = 616
+    Left = 592
+    Top = 16
   end
 end
