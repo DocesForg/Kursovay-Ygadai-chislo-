@@ -37,7 +37,6 @@ int secretNumber;
     string correctPositions;
 int numbers[9]; // Массив для хранения чисел
 int i = 0; // Текущий индекс массива
-
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -55,6 +54,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 {
    if(secretNumber==0)
    {
+     Application->Title="Осторожно!";
      ShowMessage("Пожалуйста, придумайте число."); // Вывод предупреждения
         Edit2->SetFocus(); // Возвращение фокуса на Edit поле
                 Memo1->Lines->Clear();
@@ -64,6 +64,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
    }
    else if(Edit1->Text == "")
    {
+     Application->Title="Осторожно!";
      ShowMessage("Пожалуйста, заполните поле."); // Вывод предупреждения
         Edit1->SetFocus(); // Возвращение фокуса на Edit поле
    }
@@ -102,6 +103,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         Memo2->Lines->Add("Угадано цифр: " + IntToStr(correctDigits) + ", правильные позиции: " + correctPositionsStr);
      if (secretNumber == guess)
     {
+         Application->Title="Победа";
          ShowMessage("Поздравляем, вы победили!");
 
             // ?????? ?? ?????? ????? ????
@@ -130,6 +132,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
     }
      else
     {
+        Application->Title="Внимание!";
         ShowMessage("Пожалуйста, введите число от 1 до 1000.");
         Edit1->SetFocus(); // Устанавливаем фокус обратно на Edit1
 
@@ -137,6 +140,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
      }
     else
     {
+        Application->Title="Проигрыш";
         ShowMessage("Вы проиграли! Создайте новое число");
 
             // ?????? ?? ?????? ????? ????
@@ -170,6 +174,7 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
 {
          if (Edit2->Text == "" ) // Проверка на пустое поле
     {
+        Application->Title="Осторожно!";
         ShowMessage("Пожалуйста, заполните поле."); // Вывод предупреждения
         Edit2->SetFocus(); // Возвращение фокуса на Edit поле
     }
@@ -190,6 +195,7 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
         Memo1->Lines->Clear();
         }
         else{
+        Application->Title="Осторожно!";
         ShowMessage("Пожалуйста, введите число от 1 до 1000.");
         Edit2->SetFocus(); // Устанавливаем фокус обратно на Edit1
          Memo1->Lines->Clear();
