@@ -132,7 +132,6 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
     {
         ShowMessage("Пожалуйста, введите число от 1 до 1000.");
         Edit1->SetFocus(); // Устанавливаем фокус обратно на Edit1
-            Memo1->Lines->Delete(Memo1->Lines->Count - 1);
 
     }
      }
@@ -197,6 +196,8 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
          Memo2->Lines->Clear();
          Edit1->Clear();
          Edit2->Clear();
+         secretNumber = 0;
+         guess=0;
         }
         }
 }
