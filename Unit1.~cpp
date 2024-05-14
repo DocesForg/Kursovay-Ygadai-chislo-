@@ -123,7 +123,6 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         outfile << numbers[i] << " ";
         }
                 }
-        outfile<<endl;
           outfile.close();
          Application->Title="Победа";
          ShowMessage("Поздравляем, вы победили!");
